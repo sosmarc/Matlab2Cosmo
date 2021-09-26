@@ -1,3 +1,12 @@
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This code is shared under the Creative Commons (CC BY-SA 4.0) license.
+% Authorship of this piece of code is credited to Adriel Sosa PhD (email: 
+% adriel.sosa@ulpgc.es)
+% The code is provided as is, so the author is not responsible for any kind 
+% of flaw, inaccuracy or malfunctioning it may contain.
+% Copyright (r) CC BY-SA 4.0, 2021 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 function [sprof, surfSigInfoMat, cosmoSigma] = cosmo_sigmaProfile( comp, job, sigmaBinWidth, sigmaBounds, av )
 
 if nargin<5 || isempty(av)
@@ -5,7 +14,7 @@ if nargin<5 || isempty(av)
                     %                                                      (According to Klamt, this would be: 0.78389 A)     
 end
 if nargin<4 || isempty(sigmaBounds)
-    sigmaBounds = [-3 3];    % e·nm^-2
+    sigmaBounds = [-3 3];    % eÂ·nm^-2
 end
 if length(sigmaBounds)~=2 || diff(sigmaBounds)<0
     error('COSMO:sigmaProfArgs', 'Wrong sigmaBounds. Argument must have length 2 and upper bound must be greater than lower bound');
@@ -28,7 +37,7 @@ cosmoSigma = sigma_averaging( surfSigInfoMat, av );
 % Extract segment surface (in A^2)
 sigmaSurf  = surfSigInfoMat(:,7);
 
-% Get sigma profile (Surface-charge density from e·A^-2 to e·nm^-2 )
+% Get sigma profile (Surface-charge density from eÂ·A^-2 to eÂ·nm^-2 )
 sprof = getSigmaProfile( cosmoSigma * 100, sigmaSurf, sigmaBinWidth, sigmaBounds );
 
 % Smooth sigma-profile in case of Klamt-averaging
